@@ -40,7 +40,8 @@ router.put(
       //     name: req.body.name,
       //     description: req.body.description,
       //     completed: req.body.completed,
-      //   };bu kısmı yazmayıp direkt req.body deyince de oluyor.
+      //   };bu kısmı yazmayıp direkt req.body deyince de oluyor. Ama bu şekilde yazarsak kullanıcıların ne göndermesi grerktiği konusunda kendimizi garantiye almış oluruz.
+      //completed kısmını boş gönderdiğimizde boş olduğunu görüyor ve default(false) devreye giriyor.
       const updatedProject = await projectModel.update(req.params.id, req.body);
       res.status(200).json(updatedProject);
     } catch (error) {

@@ -20,7 +20,9 @@ async function validateActionPayload(req, res, next) {
     if (!project_id || !description || !notes) {
       res.status(400).json({ message: "Eksik alanları kontrol ediniz." });
     } else {
+      //Bir eylem eklerken sağlanan "project_id"nin mevcut bir "projeye" ait olduğundan emin olun. demiş o yüzden veritabanında o projenin var olup olmadığına baktık
       const existproject = await projectModel.get(project_id);
+      // req.paramstaki id değil body'deki id'i almamız gerekiyor.Params dediğimiz routerdaki parametre, body dediğimiz body'nin içersinde bizim gönderdiğimiz parametre oluyor.
       if (!existproject) {
         res.status(400).json({ message: "Id kontrol ediniz" });
       } else {
